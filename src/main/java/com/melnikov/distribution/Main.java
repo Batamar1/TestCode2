@@ -23,7 +23,8 @@ public class Main implements CommandLineRunner {
 
     @Override
     public void run(String... strings) {
-        TaskCreator thread = (TaskCreator)applicationContext.getBean("taskCreator");
-        thread.run();
+        TaskCreator taskCreator = (TaskCreator)applicationContext.getBean("taskCreator");
+        Thread thread = new Thread(taskCreator);
+        thread.start();
     }
 }
